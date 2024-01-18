@@ -3,6 +3,7 @@
 ### https://playwright.dev/python/docs/intro
 ```pip install pytest-playwright```
 
+### Instalar navegadores Chrome, Firefox, webkit
 ```playwright install```
 
 ## Generar lista de paquetes a instalar
