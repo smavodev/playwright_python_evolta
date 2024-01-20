@@ -12,7 +12,8 @@
 ```pip install -r requirements.txt```
 
 ## Run tests in headed mode
-```pytest --headed```
+```pytest --headed``` <test>
+```pytest --headed .\test_example_1.py```
 
 ## Run tests on different browsers
 ```pytest --browser webkit```
@@ -22,7 +23,9 @@
 ```pytest test_example.py```
 
 ## Run tests in parallel
-```pytest --numprocesses 2```
+```pytest --numprocesses 2 .\test_example_1.py```
 
 ## Running Codegen
 ```playwright codegen <url>```
+```playwright codegen https://test.evolta.pe/Login/Acceso/Index```
+
