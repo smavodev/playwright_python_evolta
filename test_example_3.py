@@ -8,12 +8,13 @@ from playwright.sync_api import Page, expect, Playwright, sync_playwright
 # def test_input2(page: Page):
 def test_input2(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False, slow_mo=1000)
-    # context=browser.new_context()
-    context = browser.new_context(record_video_dir="Videos/Input")
-    context = browser.new_context(viewport={'width': 1500, 'height': 800})
+    context = browser.new_context()
+    # context = browser.new_context(record_video_dir="Videos/Input")
+    # context = browser.new_context(viewport={'width': 1500, 'height': 800})  # viewport={'width': 1500, 'height': 800}
 
     page = context.new_page()
-    # page.set_viewport_size({"width": 600, "height": 700})
+    page.set_viewport_size({"width": 600, "height": 700})
+
     page.goto("https://validaciones.rodrigovillanueva.com.mx/index.html")
     expect(page).to_have_title("Formulario de Ejemplo")
 
