@@ -51,29 +51,22 @@ def test_input2(playwright: Playwright) -> None:
     page.screenshot(path="Imagenes/input2/direccion.png")
 
     # Validar si esta Visible
-    boton=page.locator("//button[@type='submit'][contains(.,'Enviar')]")
+    boton = page.locator("//button[@type='submit'][contains(.,'Enviar')]")
     expect(boton).to_be_visible()
 
     boton = page.is_visible("//button[@type='submit'][contains(.,'Enviar')]")  # True o False
     print(boton)
     if boton:
-        print("Entro al True, es decir si lo encontro")
+        print("Entro al True, es decir si lo encontró")
         page.locator("//button[@type='submit'][contains(.,'Enviar')]").click()
     else:
         print("No se Encuentar el Boton")
         print(boton)
     page.screenshot(path="Imagenes/input2/submit3.png")
 
-    # expect(page).to_have_url(re.compile(".*datos-personales/"))
-
-    CONFIRMACION = page.locator("//div[contains(@id,'flashMessage')]")
-    expect(CONFIRMACION).to_contain_text("El formulario se ha enviado correctamente.")
+    confirmacion = page.locator("//div[contains(@id,'flashMessage')]")
+    expect(confirmacion).to_contain_text("El formulario se ha enviado correctamente.")
 
     # Cerrar Context y Navegador
     context.close()
     browser.close()
-
-
-
-
-
