@@ -1,17 +1,8 @@
 import csv
+from openpyxl import load_workbook
 
 
-def get_Data_from_CSV_1(file_path):
-    data = []
-    with open(file_path, 'r') as csvfile:
-        reader = csv.reader(csvfile)
-        next(reader)  # Omitir la primera fila si contiene encabezados
-        for row in reader:
-            data.append(tuple(row))
-    return data
-
-
-def get_Data_from_CSV_2(file_path):
+def get_Data_from_CSV(file_path):
     data = []
     with open(file_path, 'r') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -19,3 +10,20 @@ def get_Data_from_CSV_2(file_path):
             data.append(row)
     return data
 
+
+def get_Data_from_TXT(file_path):
+    data = []
+    with open(file_path, 'r') as txtfile:
+        lines = txtfile.readlines()
+
+        # Obtener los encabezados del archivo TXT (la primera línea)
+        headers = lines[0].strip().split(',')
+
+        # Iterar sobre las líneas y procesar los datos
+        for line in lines[1:]:
+            values = line.strip().split(',')
+            # Crear un diccionario dinámicamente con claves y valores
+            row_data = dict(zip(headers, values))
+            data.append(row_data)
+
+    return data
