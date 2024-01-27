@@ -13,7 +13,7 @@ def test_input2(playwright: Playwright) -> None:
     # context = browser.new_context(viewport={'width': 1500, 'height': 800})  # viewport={'width': 1500, 'height': 800}
 
     page = context.new_page()
-    page.set_viewport_size({"width": 600, "height": 700})
+    page.set_viewport_size({"width": 1200, "height": 900})
 
     page.goto("https://validaciones.rodrigovillanueva.com.mx/index.html")
     expect(page).to_have_title("Formulario de Ejemplo")
