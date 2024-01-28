@@ -20,7 +20,7 @@ def test_checkbox4(playwright: Playwright) -> None:
     # Tiempo de Espera
     page.set_default_timeout(5000)
 
-    # Scrholl de la página
+    # Scroll de la página
     page.mouse.wheel(0, 400)
     time.sleep(2)
 

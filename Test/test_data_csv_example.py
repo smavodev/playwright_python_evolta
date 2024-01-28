@@ -1,6 +1,6 @@
 import pytest
 from playwright.sync_api import Playwright, sync_playwright
-from Utils.Data_context import get_Data_from_Excel
+from Utils.Data_context import get_Data_from_CSV
 
 
 # Lanzar el navegador y crear el contexto fuera del bucle
@@ -14,7 +14,7 @@ def browser_context(playwright: Playwright):
 
 
 # Parametrizar la prueba con los datos del CSV
-@pytest.mark.parametrize("test_data", get_Data_from_Excel('Data\\data_users.xlsx'))
+@pytest.mark.parametrize("test_data", get_Data_from_CSV('C:/Users/Smavodev/Desktop/playwright_python/Data/data_users.csv'))
 def test_input2(browser_context, test_data) -> None:
     context = browser_context
     page = context.new_page()
