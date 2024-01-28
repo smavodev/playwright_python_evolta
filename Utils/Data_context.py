@@ -43,3 +43,4 @@ def get_Data_from_Excel(file_path):
         data.append(row_data)
 
     return data
+
