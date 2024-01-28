@@ -1,5 +1,5 @@
 from playwright.sync_api import Playwright, expect
-from Funciones import Funciones_Globales
+from Funciones.Funciones import Funciones_Globales
 
 # Variables globales
 tiempo = 0.5
