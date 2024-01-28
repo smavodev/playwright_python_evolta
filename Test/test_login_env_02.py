@@ -35,5 +35,5 @@ def base_test(browser):
 
 class TestLoginSuccess:
     def test_login_success(self, base_test):
-        base_test.login_success(USER_VALID, PASS_VALID)
+        base_test.login_success_2(USER_VALID, PASS_VALID)
 

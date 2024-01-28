@@ -27,5 +27,5 @@ def login_page(browser):
 
 class TestLoginSuccess:
     def test_login_success(self, login_page):
-        login_page.login_success(USER_VALID, PASS_VALID)
+        login_page.login_success_2(USER_VALID, PASS_VALID)
 

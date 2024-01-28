@@ -15,6 +15,7 @@ PASS_VALID = os.getenv("PASS_VALID")
 BROWSER = os.getenv("BROWSER")
 HEADLESS = os.getenv("HEADLESS")
 HEADLESS = True if HEADLESS.lower() == 'true' else False
+RUTA_DATA = os.getenv("RUTA_DATA")
 
 
 @pytest.fixture(scope="module")
@@ -36,19 +37,19 @@ def base_test(browser):
 
 class TestLoginSuccess:
     @pytest.mark.skip
-    @pytest.mark.parametrize("user_data", get_Data_from_Excel('Data/data_users.xlsx'))
+    @pytest.mark.parametrize("user_data", get_Data_from_Excel(RUTA_DATA+'data_users.xlsx'))
     def test_login_success_1(self, base_test, user_data):
         base_test.login_success_1(user_data)
 
     @pytest.mark.test_all
-    @pytest.mark.parametrize("user_data", get_Data_from_CSV('Data/data_users.csv'))
+    @pytest.mark.parametrize("user_data", get_Data_from_CSV(RUTA_DATA+'data_users.csv'))
     def test_login_success_2(self, base_test, user_data):
         username = user_data.get("username")
         password = user_data.get("password")
         base_test.login_success_2(username, password)
 
     @pytest.mark.data_test
-    @pytest.mark.parametrize("user_data", get_Data_from_TXT('Data/data_users.csv'))
+    @pytest.mark.parametrize("user_data", get_Data_from_TXT(RUTA_DATA+'data_users.csv'))
     def test_login_success_2(self, base_test, user_data):
         username = user_data.get("username")
         password = user_data.get("password")
