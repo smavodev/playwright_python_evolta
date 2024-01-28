@@ -22,14 +22,14 @@ def test_input2(playwright: Playwright) -> None:
     page.set_default_timeout(5000)
 
     page.locator("//input[contains(@id,'nombre')]").fill("Rodrigo")
-    page.screenshot(path="Imagenes/input2/nombre.png")
+    page.screenshot(path="../Imagenes/input2/nombre.png")
 
     # Aserts o Validadores
     apellidos = page.locator("//input[contains(@id,'apellidos')]")
     # Visible
     expect(apellidos).to_be_visible()
     page.locator("//input[contains(@id,'apellidos')]").fill("Villanueva Nieto")
-    page.screenshot(path="Imagenes/input2/apellido.png")
+    page.screenshot(path="../Imagenes/input2/apellido.png")
 
     # Enabled
     email = page.locator("//input[contains(@id,'email')]")
@@ -38,17 +38,17 @@ def test_input2(playwright: Playwright) -> None:
     expect(email).to_be_empty()
 
     page.locator("//input[contains(@id,'tel')]").fill("1978554490")
-    page.screenshot(path="Imagenes/input2/telefono.png")
+    page.screenshot(path="../Imagenes/input2/telefono.png")
 
     # Contiene el ID
     expect(email).to_have_id("email")
     page.locator("//input[contains(@id,'email')]").fill("rodrigo@gmail.com")
-    page.screenshot(path="Imagenes/input2/email.png")
+    page.screenshot(path="../Imagenes/input2/email.png")
     # tiempo forzado
     time.sleep(0.5)
 
     page.locator("//input[contains(@name,'direccion')]").fill("Testing #123 San Isidro")
-    page.screenshot(path="Imagenes/input2/direccion.png")
+    page.screenshot(path="../Imagenes/input2/direccion.png")
 
     # Validar si esta Visible
     boton = page.locator("//button[@type='submit'][contains(.,'Enviar')]")
@@ -62,7 +62,7 @@ def test_input2(playwright: Playwright) -> None:
     else:
         print("No se Encuentar el Boton")
         print(boton)
-    page.screenshot(path="Imagenes/input2/submit3.png")
+    page.screenshot(path="../Imagenes/input2/submit3.png")
 
     confirmacion = page.locator("//div[contains(@id,'flashMessage')]")
     expect(confirmacion).to_contain_text("El formulario se ha enviado correctamente.")

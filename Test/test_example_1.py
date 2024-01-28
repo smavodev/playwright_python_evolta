@@ -8,10 +8,10 @@ def test_uno(page: Page):
 
     buton_uno = page.locator("text=Get started")
     expect(buton_uno).to_have_attribute("href", "/docs/intro")
-    page.screenshot(path="Imagenes/test_uno.png")
+    page.screenshot(path="../Imagenes/test_uno.png")
     buton_uno.click()
     # Tomar foto
-    page.screenshot(path="Imagenes/test_uno_final.png")
+    page.screenshot(path="../Imagenes/test_uno_final.png")
 
     # Validando el resultado de la página destino
     expect(page).to_have_url(re.compile(".*docs/intro"))
