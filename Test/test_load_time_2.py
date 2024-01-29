@@ -50,5 +50,6 @@ class TestSuccess:
             # Validar la URL después de hacer clic en "Submit"
             expect(login_page).to_have_url(re.compile(".*text-box"))
 
+        locator_buton_submit = "//button[@id='submit']"
         # Llamar a la función para medir el tiempo de carga y validar la presencia del elemento
-        measure_load_time(login_page, test_form, "//button[@id='submit']", 30)
+        measure_load_time(login_page, test_form, locator_buton_submit, 30)
