@@ -1,5 +1,5 @@
 
 import pytest
 
-pytest.mark.testall = pytest.mark.marker(name="test_all")
-pytest.mark.datatest = pytest.mark.marker(name="data_test")
+pytest.mark.test_all = pytest.mark.test_all
+pytest.mark.data_test = pytest.mark.data_test

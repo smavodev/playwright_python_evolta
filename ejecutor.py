@@ -8,11 +8,11 @@ import schedule
 def run_tests():
     print("Ejecutando pruebas...")
     sys.stdout.flush()  # Asegurar que la salida se imprima inmediatamente
-    pytest.main(["-s", "./Test/test_load_time_3.py"])
+    pytest.main(["-v", "./Test/test_load_time_3.py"])
 
 
 # Programar la ejecución de las pruebas cada 10 minutos durante 6 horas
-schedule.every(2).minutes.do(run_tests)
+schedule.every(1).minutes.do(run_tests)
 
 # Mantener el programa en ejecución hasta que se completen las 6 horas
 total_time = 1 * 60 * 60  # 8 horas en segundos

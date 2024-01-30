@@ -46,3 +46,6 @@
 
 ### Ejecutar pruebas con un marcador y excluir pruebas con otro:
 ```pytest -k "test_all and not data_test" .\Test\test_login_data_03.py```
+
+### Ejecutor de tareas repetitivas
+```pytest -s ejecutor.py```
