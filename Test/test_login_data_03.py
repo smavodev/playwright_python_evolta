@@ -10,8 +10,8 @@ load_dotenv()
 
 # Obtener valores de las variables de entorno
 URL_BASE = os.getenv("URL_BASE")
-USER_VALID = os.getenv("USER_VALID")
-PASS_VALID = os.getenv("PASS_VALID")
+# USER_VALID = os.getenv("USER_VALID")
+# PASS_VALID = os.getenv("PASS_VALID")
 BROWSER = os.getenv("BROWSER")
 HEADLESS = os.getenv("HEADLESS")
 HEADLESS = True if HEADLESS.lower() == 'true' else False
@@ -36,21 +36,28 @@ def base_test(browser):
 
 
 class TestLoginSuccess:
+    @pytest.mark.data_test
+    @pytest.mark.parametrize("user_data", get_Data_from_Excel(RUTA_DATA+'data_users.xlsx'))
+    def test_login_success_0(self, base_test, user_data):
+        base_test.login_success_1(user_data)
+
     @pytest.mark.skip
     @pytest.mark.parametrize("user_data", get_Data_from_Excel(RUTA_DATA+'data_users.xlsx'))
     def test_login_success_1(self, base_test, user_data):
-        base_test.login_success_1(user_data)
+        username = user_data.get("username")
+        password = user_data.get("password")
+        base_test.login_success_2(username, password)
 
-    @pytest.mark.test_all
+    @pytest.mark.skip
     @pytest.mark.parametrize("user_data", get_Data_from_CSV(RUTA_DATA+'data_users.csv'))
     def test_login_success_2(self, base_test, user_data):
         username = user_data.get("username")
         password = user_data.get("password")
         base_test.login_success_2(username, password)
 
-    @pytest.mark.data_test
+    @pytest.mark.skip
     @pytest.mark.parametrize("user_data", get_Data_from_TXT(RUTA_DATA+'data_users.csv'))
-    def test_login_success_2(self, base_test, user_data):
+    def test_login_success_3(self, base_test, user_data):
         username = user_data.get("username")
         password = user_data.get("password")
         base_test.login_success_2(username, password)

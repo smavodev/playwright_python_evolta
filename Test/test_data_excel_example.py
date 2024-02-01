@@ -1,7 +1,12 @@
 import pytest
 from playwright.sync_api import Playwright, sync_playwright
 from Utils.Data_context import get_Data_from_Excel
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+RUTA_DATA = os.getenv("RUTA_DATA")
 
 # Lanzar el navegador y crear el contexto fuera del bucle
 @pytest.fixture
@@ -14,7 +19,7 @@ def browser_context(playwright: Playwright):
 
 
 # Parametrizar la prueba con los datos del CSV
-@pytest.mark.parametrize("test_data", get_Data_from_Excel('C:/Users/Smavodev/Desktop/playwright_python/Data/data_users.xlsx'))
+@pytest.mark.parametrize("test_data", get_Data_from_Excel(RUTA_DATA+'data_users.xlsx'))
 def test_input2(browser_context, test_data) -> None:
     context = browser_context
     page = context.new_page()
@@ -28,10 +33,10 @@ def test_input2(browser_context, test_data) -> None:
     page.locator("//input[contains(@class,'btn btn-lg btn-danger btn-block')]").click()
     page.set_default_timeout(60000)
 
-    page.locator("//a[@href='#'][contains(.,'Inicio')]").click()
+    page.locator("//a[contains(.,'Inicio')]").click()
     page.locator("//input[contains(@type,'search')]").fill(test_data['busqueda_a'])
     page.locator("//button[contains(.,'Buscar')]").click()
-    page.wait_for_timeout(6000)
+    page.set_default_timeout(6000)
 
     page.locator("//div[contains(@class,'dropdown drp-user')]").click()
     page.locator("//a[contains(.,'Salir')]").click()
