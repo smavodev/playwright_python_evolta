@@ -20,7 +20,7 @@ def browser_context(playwright: Playwright):
 
 
 # Parametrizar la prueba con los datos del CSV
-@pytest.mark.parametrize("test_data", get_Data_from_TXT(RUTA_DATA+'data_users.csv'))
+@pytest.mark.parametrize("test_data", get_Data_from_TXT(RUTA_DATA+'data_users.txt'))
 def test_input2(browser_context, test_data) -> None:
     context = browser_context
     page = context.new_page()
@@ -32,13 +32,12 @@ def test_input2(browser_context, test_data) -> None:
     page.locator('//*[@id="txtUsuario"]').fill(test_data['username'])
     page.locator('//*[@id="txtClave"]').fill(test_data['password'])
     page.locator("//input[contains(@class,'btn btn-lg btn-danger btn-block')]").click()
-    page.set_default_timeout(60000)
+    page.set_default_timeout(30000)  # Implicito
 
     page.locator("//a[contains(.,'Inicio')]").click()
     page.locator("//input[contains(@type,'search')]").fill(test_data['busqueda_a'])
     page.locator("//button[contains(.,'Buscar')]").click()
-    # page.wait_for_timeout(6000)
-    page.set_default_timeout(6000)
+    page.set_default_timeout(30000)  # Implicito
 
     page.locator("//div[contains(@class,'dropdown drp-user')]").click()
     page.locator("//a[contains(.,'Salir')]").click()

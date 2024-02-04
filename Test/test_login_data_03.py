@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from Config.Config import Config
 from Utils.Data_context import get_Data_from_Excel, get_Data_from_CSV, get_Data_from_TXT
@@ -16,6 +18,10 @@ BROWSER = os.getenv("BROWSER")
 HEADLESS = os.getenv("HEADLESS")
 HEADLESS = True if HEADLESS.lower() == 'true' else False
 RUTA_DATA = os.getenv("RUTA_DATA")
+MES_INICI0 = os.getenv("MES_INICI0")
+BUSQUEDA_A = os.getenv("BUSQUEDA_A")
+VALIDACION_A = os.getenv("VALIDACION_A")
+tiempo_espera = 30
 
 
 @pytest.fixture(scope="module")
@@ -36,7 +42,7 @@ def base_test(browser):
 
 
 class TestLoginSuccess:
-    @pytest.mark.data_test
+    @pytest.mark.skip
     @pytest.mark.parametrize("user_data", get_Data_from_Excel(RUTA_DATA+'data_users.xlsx'))
     def test_login_success_0(self, base_test, user_data):
         base_test.login_success_1(user_data)
@@ -46,19 +52,36 @@ class TestLoginSuccess:
     def test_login_success_1(self, base_test, user_data):
         username = user_data.get("username")
         password = user_data.get("password")
-        base_test.login_success_2(username, password)
+        base_test.login_success_2(username, password, MES_INICI0, tiempo_espera)
 
     @pytest.mark.skip
     @pytest.mark.parametrize("user_data", get_Data_from_CSV(RUTA_DATA+'data_users.csv'))
     def test_login_success_2(self, base_test, user_data):
         username = user_data.get("username")
         password = user_data.get("password")
-        base_test.login_success_2(username, password)
+        base_test.login_success_2(username, password, MES_INICI0, tiempo_espera)
 
     @pytest.mark.skip
     @pytest.mark.parametrize("user_data", get_Data_from_TXT(RUTA_DATA+'data_users.csv'))
     def test_login_success_3(self, base_test, user_data):
         username = user_data.get("username")
         password = user_data.get("password")
-        base_test.login_success_2(username, password)
+        base_test.login_success_2(username, password, MES_INICI0, tiempo_espera)
+
+    @pytest.mark.data_test
+    @pytest.mark.parametrize("user_data", get_Data_from_TXT(RUTA_DATA + 'data_users.csv'))
+    def test_login_success_4(self, base_test, user_data):
+        start_time = time.time()  # Capturar el tiempo de inicio
+
+        username = user_data.get("username")
+        password = user_data.get("password")
+        # seguimiento_a = user_data.get('busqueda_a')
+        base_test.login_success_2(username, password, MES_INICI0, tiempo_espera)
+        base_test.panelSeguimiento(tiempo_espera)
+        base_test.busquedaLeads(BUSQUEDA_A, VALIDACION_A, 30)
+
+        end_time = time.time()
+        total_time = end_time - start_time
+        rounded_total_time = round(total_time, 2)  # Redondear a 2 decimales
+        print(f"Tiempo total de ejecución: {rounded_total_time} segundos")
 

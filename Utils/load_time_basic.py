@@ -1,12 +1,12 @@
 import time
 
 
-def measure_load_time(page, action, selector, timeout):
+def measure_load_time(page, action, selector, t_espera):
     start_time = time.time()
     action()
 
     try:
-        page.wait_for_selector(selector, timeout=timeout * 1000)
+        page.wait_for_selector(selector, t_espera=t_espera * 1000)
     except:
         print("Elemento no encontrado después de la acción.")
 
