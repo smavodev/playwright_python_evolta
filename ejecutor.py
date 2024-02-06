@@ -8,7 +8,7 @@ import schedule
 def run_tests():
     print("Ejecutando pruebas...")
     sys.stdout.flush()  # Asegurar que la salida se imprima inmediatamente
-    pytest.main(["-v", "./Test/test_load_time_3.py"])
+    pytest.main(["-s", "--headed", "./Test/test_login_data_screenshot_03.py"])
 
 
 # Programar la ejecución de las pruebas cada 10 minutos durante 6 horas
